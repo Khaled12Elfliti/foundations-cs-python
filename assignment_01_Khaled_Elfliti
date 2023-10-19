@@ -1,1 +1,183 @@
-assignment_01_Name_LastName
+#ex1
+def factorial(x):
+ if x == 0:
+    return 1
+ total = 1
+ for i in range(2, x+1):
+    total*=i
+ return total
+option = 1   # option give me an choice to repeat factorial more than once
+while(option ==1):
+    x = input('please enter a number > 0: ')
+    while (not x.isdigit()):
+        print("invalid input , please enter a number > 0 ")
+        x = input('please enter a number > 0: ')
+    x = int(x)
+    print("factorial of", x, "is : ", factorial(x))
+    option = int(input("enter 1 to calcul other factorial, 0 for stop: "))
+#-----------------------------------------------------------------------------------------------------------------
+#ex2
+def divisor(x):
+    L=[1]
+    if x == 1:
+        return L
+    else:
+        if (x == 2):
+                L.append(2)
+                return L
+        count = 1
+        for i in range(2, x//2+1):
+            count+=1
+            if (x%i == 0):
+                L.append(i)
+        L.append(x)
+        print(count)
+        return L
+x = input('please enter a number > 0:')
+while (not x.isdigit()):
+        print("invalid input , please enter a number > 0 ")
+        x = input('please enter a number > 0:')
+x = int(x)
+print('the divisors of', x, 'are : ', divisor(x))
+#------------------------------------------------------------------
+#ex2 another way
+def divisor(x):
+    L=[1]
+    if x == 1:
+        return L
+    else:
+        if (x == 2):
+                L.append(2)
+                return L
+        i = 2
+        count = 1
+        while(i < x//i):
+            if (x%i == 0):
+                L.append(i)
+                L.append(x//i)
+            i+=1
+            count+=1
+        if(i==x//i and x%i==0):
+            L.append(i)
+        L.append(x)
+        count+=1
+        L.sort()
+        print(count)
+        return L
+x = input('please enter a number > 0:')
+while (not x.isdigit()):
+        print("invalid input , please enter a number > 0 ")
+        x = input('please enter a number > 0:')
+x = int(x)
+print('the divisors of', x, 'are : ', divisor(x))
+#---------------------------------------------------------------
+#ex3
+def reverseString(string):
+    str1=""
+    for i in range(len(string)):
+        str1 = str1 + string[-1-i]
+    return str1
+str = input('enter a sequence of letter : ')
+print(reverseString(str))
+#----------------------------------------------------------------
+#ex4
+def list_of_even(L):
+  l=[]
+  for i in range(len(L)):
+      if (L[i]%2==0):
+          l.append(L[i])
+  return l
+list1 = [1, 2, 8, 6, 5, 9, 10]
+print(list_of_even(list1))
+#----------------------------------------------------------------
+#ex5
+def check_password(string):
+  str = " weak password "
+  list_upper_lower_special = [0, 0, 0] #use a list to check if there is at least #one upper case, one lower case, and one special character
+  if len(string) < 8:
+      return str 
+  else :
+      i = 0
+      while (list_upper_lower_special != [1, 1, 1] and i < len(string)): # it is not nessecary to check all the characters, if we find one upper case, one lower case, and one special character 
+        if (list_upper_lower_special [0] == 0 and string[i].isupper()):
+          list_upper_lower_special[0] = 1
+        elif (list_upper_lower_special [1] == 0 and string[i].islower()):
+          list_upper_lower_special[1] = 1
+        elif (list_upper_lower_special [2] == 0 and string[i] in "?!.<>\/@#$%^&*()-+:_"):
+          list_upper_lower_special[2] = 1
+        i += 1
+  if list_upper_lower_special == [1, 1, 1]:
+    str = "strong paasword"
+  return str
+string = input("enter a string : ")
+print(check_password(string))
+#----------------------------------------------------------------------------------------------------
+#ex6
+def check_IPv4(string):
+  str = string.split(".")
+  if (len(str)<4):
+    return("missing octet")
+  elif(len(str)>4):
+    return ("extra octet")
+  elif("" in str):
+    return ("consecutive period")
+  i = 0 
+  while(i in range(len(str))):
+      if (int(str[i])>255):
+        return ("octet value is too large")
+      elif(int(str[i])<0):
+        return ("negative number")
+      elif(str[i][0] == "0" and len(str[i])>1):
+        return ("leading zero in octet")
+      i+=1
+  return (string + " is a valid IPv4 address")
+str = input("Enter an IPv4 addr : ")
+print(check_IPv4(str))
+#-------------------------------------------------------------------------------------------------------------------------
+#ex7
+def statics(list1):
+  sum = 0
+  list2 = []
+  for i in range(len(list1)):
+    sum += list1[i]
+  Mean = sum/len(list1)
+  list2 = list1
+  list2.sort()
+  if(len(list1)%2 == 0):
+    Median = (list2[len(list1)//2-1] + list2[len(list1)//2])//2
+  else:
+    Median = list2[len(list1)//2]
+  Range = list2[-1] - list2[0]
+  Variance = 0
+  for i in range(len(list1)):
+    Variance += (list1[i] - Mean)**2
+  Variance = Variance/len(list1)
+  Standard_Deviation = Variance**0.5
+  Mode1 = [list2[0]]
+  Mode = []
+  max_occ = list2.count(list2[0])
+  i = list2.count(list2[0])
+  while(i < len(list2)):
+    if(list2.count(list2[i])) > max_occ:
+      max_occ = list2.count(list2[i])
+      Mode1 = [list2[i]]
+    elif(list2.count(list2[i]) == max_occ):
+      Mode1.append(list2[i])
+    i += list2.count(list2[i])
+  if (len(list2) == len(Mode1) * max_occ):
+    Mode = "No Mode"
+  else:
+    Mode = Mode1
+  L = [Mean, Median, Mode, Range, Variance, Standard_Deviation]
+  return L
+L = [3, 2, 4, 1, 2, 3, 4, 1]
+mean, median, mode, range1, variance, standard_deviation = statics(L)
+print("Mean: ", mean)
+print("Median: ", median)
+print("Mode: ", mode)
+print("Range: ", range1)
+print("Variance: ", variance)
+print("Standard Deviation: ", standard_deviation)
+
+
+
