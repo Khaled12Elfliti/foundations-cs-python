@@ -42,7 +42,7 @@ while (not x.isdigit() or int(x) == 0):
 x = int(x)
 print('the divisors of', x, 'are : ', divisor(x))
 #------------------------------------------------------------------
-#ex2 another way (I want to make sure from this method , I use count to show how we reduced number of excution the loop)
+#ex2 another way (I want to make sure from this method , I use count to show how we reduced number of excution of the loop)
 def divisor(x):
     L=[1]
     count = 1
@@ -54,7 +54,7 @@ def divisor(x):
                 count += 1
                 return L
         i = 2
-        while(i < x//i): # here we need to reach x**0.5 only. it is not nessecary reach x//2
+        while(i < x//i): # here we need to reach x**0.5 only. it is not necessary reach x//2
             if (x%i == 0):
                 L.append(i)
                 L.append(x//i) 
