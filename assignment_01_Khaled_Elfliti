@@ -147,7 +147,7 @@ def statics(list1):
   list2 = list1
   list2.sort()
   if(len(list1)%2 == 0):
-    Median = (list2[len(list1)//2-1] + list2[len(list1)//2])//2
+    Median = (list2[len(list1)//2-1] + list2[len(list1)//2])/2
   else:
     Median = list2[len(list1)//2]
   Range = list2[-1] - list2[0]
