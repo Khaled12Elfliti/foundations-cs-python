@@ -14,25 +14,25 @@ while(option ==1):
         x = input('please enter a number > 0: ')
     x = int(x)
     print("factorial of", x, "is : ", factorial(x))
-    option = int(input("enter 1 to calcul other factorial, 0 for stop: "))
+    option = int(input("enter 1 to calcul other factorial, 0 to stop: "))
 #-----------------------------------------------------------------------------------------------------------------
 #ex2
 def divisor(x):
     L=[1]
-    count = 1
+    count = 1 # count for do a comparaison with second method only
     if x == 1:
-        count += 1
         return L
     else:
         if (x == 2):
                 L.append(2)
+                count += 1 #optional
                 return L
         for i in range(2, x//2+1):
-            count+=1
+            count+=1 #optional
             if (x%i == 0):
                 L.append(i)
         L.append(x)
-        count += 1
+        count += 1 #optional
         print(count)
         return L
 x = input('please enter a number > 0:')
