@@ -19,18 +19,20 @@ while(option ==1):
 #ex2
 def divisor(x):
     L=[1]
+    count = 1
     if x == 1:
+        count += 1
         return L
     else:
         if (x == 2):
                 L.append(2)
                 return L
-        count = 1
         for i in range(2, x//2+1):
             count+=1
             if (x%i == 0):
                 L.append(i)
         L.append(x)
+        count += 1
         print(count)
         return L
 x = input('please enter a number > 0:')
@@ -40,21 +42,22 @@ while (not x.isdigit()):
 x = int(x)
 print('the divisors of', x, 'are : ', divisor(x))
 #------------------------------------------------------------------
-#ex2 another way
+#ex2 another way (I want to make sure from this method , I use count to show how we reduced number of excution the loop)
 def divisor(x):
     L=[1]
+    count = 1
     if x == 1:
         return L
     else:
         if (x == 2):
                 L.append(2)
+                count += 1
                 return L
         i = 2
-        count = 1
-        while(i < x//i):
+        while(i < x//i): # here we need to reach x**0.5 only. it is not nessecary reach x//2
             if (x%i == 0):
                 L.append(i)
-                L.append(x//i)
+                L.append(x//i) 
             i+=1
             count+=1
         if(i==x//i and x%i==0):
