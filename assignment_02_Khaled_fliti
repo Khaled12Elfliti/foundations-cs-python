@@ -106,10 +106,13 @@ def Menu():
     x = float(x)
     if(x == 1.0):
       print("----count_digits----")
-      x = int(input("Enter a number : "))
-      while(not int(x)):
-        x = input("Invalid nymber,Enter a number : ")
-      x = int(x)
+      x = 0
+      while(not x):
+        try:
+          x = int(input("Enter a number : "))       
+        except ValueError:
+          print("Not an integer! Try again.")
+          continue
       print("the number of digits for ", x, "is : ", count_digits(x))
       break
     elif(x == 2.0):
