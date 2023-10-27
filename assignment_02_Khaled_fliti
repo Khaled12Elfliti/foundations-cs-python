@@ -1,0 +1,161 @@
+#ex1
+def count_digits(number):
+  if(number == 0):
+    return 0
+  elif(number < 0):
+    return 0 + count_digits(-number)
+  else :
+    return 1 + count_digits(number // 10)
+ #--------------------------------------------------- 
+#ex2
+def find_max(list):
+  if(len(list) == 1):
+    return list[0]
+  else:
+    return max(list[0], find_max(list[1:]))
+    
+def max(x, y):
+  if(x > y):
+    return x
+  else:
+    return y
+#_____________________________________________________
+#ex3
+def find_tags(str1, str2):
+  if(("<" + str1 + ">") not in str2 or "<" + "/" + str1 + ">" not in str2):
+    return 0
+  else:
+    if(str2.index("<" + str1 + ">") > str2.index("<" + "/" + str1 + ">")):
+      return find_tags(str1,str2[str2.index("<" + str1 + ">"):])
+    else:
+      return 1 + find_tags(str1,str2[str2.index("<" + "/" + str1 + ">") +   
+  len(str1) + 3:])
+#----------------------------------------------------
+#ex4
+def count_normalized(matrix):
+  if(matrix_null(matrix)):
+    return 0
+  else:
+    List = []
+    #print(matrix_null(matrix))
+    for j in range (len(matrix)):
+      List.append(matrix[j][0])
+      matrix[j].pop(0)
+    return(check_normalized(List) + count_normalized(matrix))
+def matrix_null(matrix):
+  if (matrix == [[]] or matrix == []):
+    return True
+  else:
+    return (len(matrix[0]) == 0 and matrix_null(matrix[1:]))
+#--------------------------------------------------------------
+def check_normalized(List):
+  L = statics(List)
+  if(L[0] == 0 and L[5] <= 1 and L[5] > 0.7):
+    return 1
+  else:
+    return 0 
+#------------------------------------------------------------
+  #calculating mean and standard deviation
+def statics(list1):
+    sum = 0
+    list2 = []
+    for i in range(len(list1)):
+      sum += list1[i]
+    Mean = sum//len(list1)
+    list2 = list1
+    list2.sort()
+    if(len(list1)%2 == 0):
+      Median = (list2[len(list1)//2-1] + list2[len(list1)//2])//2
+    else:
+      Median = list2[len(list1)//2]
+    Range = list2[-1] - list2[0]
+    Variance = 0
+    for i in range(len(list1)):
+      Variance += (list1[i] - Mean)**2
+    Variance = Variance/len(list1)
+    Standard_Deviation = Variance**0.5
+    Mode1 = [list2[0]]
+    Mode = []
+    max_occ = list2.count(list2[0])
+    i = list2.count(list2[0])
+    while(i < len(list2)):
+      if(list2.count(list2[i])) > max_occ:
+        max_occ = list2.count(list2[i])
+        Mode1 = [list2[i]]
+      elif(list2.count(list2[i]) == max_occ):
+        Mode1.append(list2[i])
+      i += list2.count(list2[i])
+    Mode = "No Mode" 
+    Mode = "No Mode" if len(list2) == len(Mode1) * max_occ else Mode1
+    L = [Mean, Median, Mode, Range, Variance, Standard_Deviation]
+    return L
+#------------------------------------------------------------
+#Menu
+def Menu():
+  print(" \tchoose one of the following options:")
+  print("\t1. Count digits")
+  print("\t2. Find max")
+  print("\t3.1. count tags")
+  print("\t3.2. Count Normalized Columns")
+  print("\t4. exit")
+  x = (input("\tEnter your choice: "))
+  while(x):
+    if(x != '1' and x != '2' and x != '3.1' and x != '3.2' and x != '4'):
+      print("----Invalid option-----")
+      break
+    x = float(x)
+    if(x == 1.0):
+      print("----count_digits----")
+      x = int(input("Enter a number : "))
+      while(not int(x)):
+        x = input("Invalid nymber,Enter a number : ")
+      x = int(x)
+      print("the number of digits for ", x, "is : ", count_digits(x))
+      break
+    elif(x == 2.0):
+      print("----find_max----")
+      n = int(input("Enter length of list : "))
+      L=[]
+      for _i in range(n):
+        L.append(int(input("Enter an element of list : ")))
+      print("the max of the list is :" , find_max(L))
+      break
+    elif(x == 3.1):
+      print("----find_tag----")
+      str1 = input("Enter a tag : ")
+      str2 = input("Enter an html text : ")
+      print("number of ", str1, "tags in the text is : ", find_tags(str1,str2))
+      break
+    elif(x == 3.2):
+      print("----count_normalized----")
+      '''nb_rows = int(input("Entrer number of rows : "))
+      nb_col = int(input("Enter number of column : "))
+      matrix = [[]]
+      for i in range(nb_rows):
+        print("Enter the element of list : ", i + 1)
+        for j in range(nb_col):
+          print("enter an elemnt : ")
+          matrix[i].append(int(input()))'''
+      matrix = [[-1.2649110640673518, 5.123451, 43],
+                [-0.6324555320336759, 5.13123123, 4334],
+                [0.0, 6.1543453, 125879],
+                [0.6324555320336759, 0.1231235709, 123544],  
+                [1.2649110640673518, 9.1543524234, 55676]]
+      print("number of normalized list in the matrix is : ",       
+      count_normalized(matrix))
+      break
+    elif(x == 4.0):
+      print("----exit----")
+      exit()
+  option = input("Enter 1 to try other option : ") 
+  if(option == '1'):
+    Menu()
+  else:
+    exit()
+#L = [1, 6, -3, 1, 45, 9, 12, 24]
+#print(find_max(L))
+#print("The number of digits for", x, "is : ", count_digits(int(x)))
+'''str2 = "<html>\n<head>\n<title>My Website</title>\n</head>\n<body>\n<h1>Welcome to my website!</h1>\n<p>Here you'll find information about me and my hobbies.</p>\n<h2>Hobbies</h2>\n<ul>\n<li>Playing guitar</li>\n<li><li>Reading books</li>\n<li>Traveling</li>\n<li>Writing cool h1 tags</li>\n</ul>\n</body>\n</html><li>"'''
+Menu()
+matrix = [[-1.2649110640673518, 5.123451, 43], [-0.6324555320336759, 5.13123123, 4334], [0.0, 6.1543453, 125879], [0.6324555320336759, 0.1231235709, 123544], [1.2649110640673518, 9.1543524234, 55676]]
+#print (find_tags("h1", str2))
