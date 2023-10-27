@@ -130,12 +130,13 @@ def Menu():
       print("----count_normalized----")
       '''nb_rows = int(input("Entrer number of rows : "))
       nb_col = int(input("Enter number of column : "))
-      matrix = [[]]
+      matrix = []
       for i in range(nb_rows):
-        print("Enter the element of list : ", i + 1)
+        col =[]
+        print("Enter the element of list", i + 1)
         for j in range(nb_col):
-          print("enter an elemnt : ")
-          matrix[i].append(int(input()))'''
+          col.append(float(input()))
+        matrix.append(col)'''
       matrix = [[-1.2649110640673518, 5.123451, 43],
                 [-0.6324555320336759, 5.13123123, 4334],
                 [0.0, 6.1543453, 125879],
