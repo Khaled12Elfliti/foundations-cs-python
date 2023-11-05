@@ -1,0 +1,194 @@
+def getStudentById(lst, id):
+  if(id > len(lst) or id < 0):
+    print("id not found ")
+  else:
+    L =[]
+    for i in range(len(lst)):
+      if lst[i]["ID"] == id:
+        L.append(lst[i])
+    return L
+def getAllStudents(lst):
+  L = []
+  for i in range(len(lst)):
+    l=[]
+    for j in lst[i]:
+      l.append(j)
+    L.append(lst[i])
+  return L
+def getStudentsByMajor(lst, major):
+  L = []
+  for i in range(len(lst)):
+    if lst[i]["Major"] == major:
+      L.append(lst[i])
+  return L
+def addStudent(lst, name, age, major, gpa):
+  id = len(lst) + 1
+  lst.append({"ID":id, "Name":name, "Age":age, "Major":major, "GPA":gpa})
+  return lst
+def commonMajors(lst1, lst2):
+  s = {""}
+  i = 0
+  while(i < len(lst1)):
+    if lst1[i]["Major"] in s:
+      i += 1
+      continue
+    for j in range(len(lst2)):
+      if(lst1[i]["Major"] == lst2[j]["Major"]):
+        x = lst1[i]["Major"]
+        s.add(x)
+        i += 1
+        break
+  s.pop()
+  return s
+def deleteStudent(lst, id):
+  if(id > len(lst) or id < 0):
+    print("id not found ")
+    return lst
+  for i in range(len(lst)):
+    if lst[i]["ID"] == id:
+      del lst[i]
+      return lst
+def averageGpa(lst):
+  s = 0
+  for i in range(len(lst)):
+    s += float(lst[i]["GPA"])
+  return s/len(lst)
+def topPerforming(lst, n):
+  if(n > len(lst)):
+    print("n is greater than the length of the list")
+    return lst
+  else:
+    l = []
+    for i in range(n):
+      l.append(lst[i])
+    print(l)
+    print("#########")
+    l = sortList(l)
+    print(l)
+    print("++++++++++++++")
+    while(i < len(lst)):
+      for j in range(n):
+        if(l[j]["GPA"] > lst[i]["GPA"]):
+          insertInPosition(l, lst[i])
+          print(l)
+          print("*****")
+          break
+      i += 1
+  i = 0
+  L= []
+  for i in range(n):
+    L.append(l[i]["Name"])
+  tab = tuple(L)
+  return tab
+def sortList(l):
+  for i in range(len(l)):
+    max = l[i]
+    for j in range(i + 1, len(l)):
+      if(l[j]["GPA"] > max["GPA"]):
+        max = l[j]
+    l[i], max = max, l[i]
+  return l
+def insertInPosition(lst1,dic):
+  for i in range(len(lst1)):
+    if(dic["GPA"] > lst1[i]["GPA"]):
+      break
+  for j in range(len(lst1)-1, i, -1):
+    lst1[j] = lst1[j-1]
+  lst1[i] = dic
+  return lst1
+'''x = 0
+while(not x):
+  try:
+    x = int(input("Enter  number of element: "))
+  except ValueError:
+    print("Invalid input,Please enter a number positive")
+    continue
+  if(x <=0):
+    print("Invalid input,Please enter a number positive")
+    x = 0
+    continue
+  else:
+    break
+student_data = [{"ID":0, "Name":"", "Age":0, "Major":0 ,"GPA":0.0}] * x
+for i in range(len(student_data)):
+  print("Enter the informations for student", i+1 ,"\n")
+  student_data[i]["ID"] = int(input("Enter ID: "))
+  student_data[i]["Name"] = input("Enter student name: ")
+  student_data[i]["Age"] = int(input("Enter student age: "))
+  student_data[i]["Major"] = input("Enter student major: ")
+  student_data[i]["GPA"] = float(input("Enter student GPA: "))
+print(student_data)'''
+student_data1 = [
+  {"ID":1, "Name":"Ahmed", "Age":20, "Major":"Computer Science", "GPA":4},
+  {"ID":2, "Name":"Mohamed", "Age":21, "Major":"History", "GPA":4.1},
+  {"ID":3, "Name":"Sara", "Age":22, "Major":"Computer Science", "GPA":3.7},
+  {"ID":4, "Name":"Ahmed", "Age":20, "Major":"Mathematics", "GPA":3.9},
+  {"ID":5, "Name":"mohamed", "Age":21, "Major":"Mathematics", "GPA":3}]
+student_data2 = [
+    {
+        "ID": 1,
+        "Name": "Alice",
+        "Age": 20,
+        "Major": "Computer Science",
+        "GPA": 3.7
+    },
+    {
+        "ID": 2,
+        "Name": "Bob",
+        "Age": 21,
+        "Major": "Engineering",
+        "GPA": 3.5
+    },
+    {
+        "ID": 3,
+        "Name": "Charlie",
+        "Age": 19,
+        "Major": "Biology",
+        "GPA": 3.9
+    },
+    {
+        "ID": 4,
+        "Name": "David",
+        "Age": 22,
+        "Major": "Mathematics",
+        "GPA": 3.8
+    },
+    {
+        "ID": 5,
+        "Name": "Eve",
+        "Age": 20,
+        "Major": "History",
+        "GPA": 3.6
+    },
+    {
+        "ID": 6,
+        "Name": "Frank",
+        "Age": 23,
+        "Major": "Physics",
+        "GPA": 3.7
+    }
+]
+def Menu():
+  print("1. Get Student by ID\n2. Get All Students\n3. Get Students by Major\n4. Add Student\n5. Find Common Majors\n6. Delete Student\n7. Calculate Average GPA\n8. Get Top Performers\n9. Exit\n")
+  x = input("Enter your choice : ")
+  if(x == "1"):
+    print(getStudentById(student_data1 , int(input("Enter student ID: "))))
+  elif(x == "2"):
+    print(getAllStudents(student_data1))
+  elif(x == "3"):
+    print(getStudentsByMajor(student_data1, input("Enter student major: ")))
+  elif(x == "4"):
+    print(addStudent(student_data1, input("Enter student name: "), int(input("Enter student age: ")), input("Enter student major: "), float(input("Enter student GPA: "))))
+  elif(x == "5"):
+    print(commonMajors(student_data1, student_data2))
+  elif(x == "6"):
+    print(deleteStudent(student_data1, int(input("Enter student ID: "))))
+  elif(x == "7"):
+    print(averageGpa(student_data1))
+  elif(x == "8"):
+    print(topPerforming(student_data1, int(input("Enter number of top performers: "))))
+  elif(x == "9"):
+    exit()
+  else:
+    print("Invalid input,Please enter a number between 1 and 9")
+Menu()
