@@ -17,6 +17,41 @@ def openTab(lst):
   lst.append(dict)
   return lst
 #--------------------------------------------------------------------------
+def closeTab(lst):
+  if(len(lst) == 0):
+    print("No tabs open")
+  else:
+    index = input("Enter index of tab to close : ")
+    x = True
+    while(x):
+      try :
+        index = int(index)
+      except ValueError:
+        print("Invalid input . Pleae enter valid index")
+        index = input("Enter index of tab to close : ")
+        continue
+      x = False
+    if((-1 * len(lst)) <= index and index < len(lst)):
+      close(lst, lst[index]) 
+    else:
+      lst.pop(-1)
+  return lst
+def close(lst, dict):
+  if(lst == []):
+    print("No tabs open")
+    return 0
+  elif(dict["child_tab"] == []):# the tab dosen't have a child
+    if(dict["parent_tab"] == 0.5):# the tab doesn't have a parent
+      print("0")
+      return lst.pop(lst.index(dict))
+    else:#the tab has a parent . we should delete this tab from list of child from its parent
+      lst[int(dict["parent_tab"])]["child_tab"].pop(lst[int(dict["parent_tab"])]["child_tab"].index(dict))
+      lst.pop(lst.index(dict))
+  elif(dict["child_tab"] != []):
+    for i in range (len(dict["child_tab"])):
+      close(lst, dict["child_tab"][i])
+      lst.pop(lst.index(dict))
+#--------------------------------------------------------------------------
 def switchTab(lst):
   if(len(lst) == 0):
     print("No tabs open")
