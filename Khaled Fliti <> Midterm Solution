@@ -153,7 +153,7 @@ def saveTabs(lst):
       print("The path doesn't exist , please enter a valid path : ")
       path_file = input("Please enter the path of the file : ")
       path_exist = os.path.exists(path_file)
-    with open('tabs.json', 'w', encoding='utf-8') as f:
+    with open('tabs.json', 'w', encoding='utf-8') as f:#reference https://stackoverflow.com/questions/3925614/how-do-you-read-a-file-into-a-list-in-python
       for i in range(len(lst)):
         json.dump(lst[i], f, indent = 4)# import list information in json file
         f.write(", ")# add comma because we are writing a list
