@@ -9,7 +9,7 @@ def openTab(lst):
   dict["Title"] = input("Enter title: ")
   dict["url"] = input("Enter URL start with 'http://': ")
   url = dict["url"]
-  valid = validators.url(url)
+  valid = validators.url(url)# check the url is valid or not
   while (not valid):
     print("Invalid URL , Please try again ")
     dict["url"] = input("Enter URL start with 'http://: ")
