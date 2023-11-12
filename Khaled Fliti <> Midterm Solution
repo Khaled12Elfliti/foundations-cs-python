@@ -94,6 +94,13 @@ def printParentAndchild(dict):# here we print the parent and  its children
     print(dict["Title"], dict["url"])
     for i in range(len(dict["child_tab"])):
       printParentAndchild(dict["child_tab"][i])
+#-------------------------------------------------------------------------------
+def clearAllTabs(lst):
+  if(len(lst) == 0):
+    print("No tabs open ")
+  else:
+    lst.clear()
+    print("All tabs cleared")
         dict["parent_tab"] = i
         lst[i]["child_tab"].append(dict)
   lst.append(dict)
