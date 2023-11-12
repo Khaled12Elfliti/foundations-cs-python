@@ -13,3 +13,26 @@ def openTab(lst):
     url = dict["url"]
   lst.append(dict)
   return lst
+#--------------------------------------------------------------------------
+def switchTab(lst):
+  if(len(lst) == 0):
+    print("No tabs open")
+    return 0
+  else:
+    index = input("Enter index of tab to display : ")
+    x = True
+    while(x):#check index is valid or not
+      try :
+        index = int(index)
+      except ValueError:
+        print("Invalid input . Pleae enter valid index")
+        index = input("Enter index of tab to display : ")
+        continue
+      x = False
+  if((-1 * len(lst)) <= int(index) and int(index) < len(lst)):# if the user type -1 , it will display the last tab , -2 , it will display the second last tab 
+    url = lst[index]["url"]
+  else:
+    url = lst[-1]["url"]
+  page = urlopen(url)#open the url
+  html = page.read().decode("utf-8")#get the html code
+  return html
