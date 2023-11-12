@@ -105,3 +105,22 @@ def clearAllTabs(lst):
         lst[i]["child_tab"].append(dict)
   lst.append(dict)
   return lst
+#---------------------------------------------------------------------------------
+def saveTabs(lst):
+  if(len(lst) == 0):
+    print("No tabs open ")
+  else:
+    #path_file = input("Please enter the path of the file : ")
+    path_file = '/home/runner/projectpy/'
+    path_exist = os.path.exists(path_file)# to check the path validity reference (https://www.geeksforgeeks.org/python-check-if-a-file-or-directory-exists-2/ )
+    while(not path_exist):
+      print("The path doesn't exist , please enter a valid path : ")
+      path_file = input("Please enter the path of the file : ")
+      path_exist = os.path.exists(path_file)
+    with open('tabs.json', 'w', encoding='utf-8') as f:
+      for i in range(len(lst)):
+        json.dump(lst[i], f, indent = 4)# import list information in json file
+        f.write(", ")# add comma because we are writing a list
+
+       # html = urlopen(lst[i]["url"]).read().decode("utf-8") #import html code in json file
+        #json.dump(html, f, indent = 4)
