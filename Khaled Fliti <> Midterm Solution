@@ -4,7 +4,8 @@ import validators
 import os
 import json
 def openTab(lst):
-  dict = {"Title": "", "url": "", "parent_tab": 0.5, "child_tab": []}
+  dict = {"Title": "", "url": "", "parent_tab": 0.5, "child_tab": []}# "parent_tab" = index of tab parent if it is equal 0.5 the tab doesn't have parent
+#child_tab: list contains the nested tab (children od the tab)
   dict["Title"] = input("Enter title: ")
   dict["url"] = input("Enter URL start with 'http://': ")
   url = dict["url"]
