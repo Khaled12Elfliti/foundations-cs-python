@@ -36,3 +36,40 @@ def switchTab(lst):
   page = urlopen(url)#open the url
   html = page.read().decode("utf-8")#get the html code
   return html
+#---------------------------------------------------------------------------
+def openNestedTab(lst):
+  dict = {"Title": "", "url": "", "parent_tab": 0.5, "child_tab": []}#"parent_tab": 0.5 means that the new tab doesnit have a parent
+  index_parent = input("Enter index of tab parent : ")
+  x = True
+  while(x):
+    try :
+      index_parent = int(index_parent)
+    except ValueError:
+      print("Invalid input . Pleae enter valid index")
+      index_parent = input("Enter index of tab parent : ")
+      continue
+    x = False
+    dict["Title"] = input("Enter title: ")
+    url = input("Please add the url: ")
+    valid = validators.url(url)#check the url is valid or not
+    while (not valid):
+      print("Invalid URL , Please try again ")
+      url = input("Please add the url: ")
+      valid = validators.url(url)
+  dict["url"] = url
+  dict["child_tab"] = []
+  dict["parent_tab"] = 0.5 # this tab doesn't have a parent 
+  for i in range (len(lst)):
+    if(url in lst[i]["url"]):# we chek if the new tab has children
+      dict["child_tab"].append(lst[i])
+
+  if(lst[index_parent]["url"] in url):# we check if the new tab has a parent
+    dict["parent_tab"] = index_parent # the index inputed it is index of parent
+    lst[index_parent]["child_tab"].append(dict)
+  else: # the index inputed not the parent of new tab we need to find its parent 
+    for i in range(len(lst)):
+      if(lst[i]["url"] in url):
+        dict["parent_tab"] = i
+        lst[i]["child_tab"].append(dict)
+  lst.append(dict)
+  return lst
