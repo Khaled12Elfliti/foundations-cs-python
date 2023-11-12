@@ -69,6 +69,28 @@ def openNestedTab(lst):
   else: # the index inputed not the parent of new tab we need to find its parent 
     for i in range(len(lst)):
       if(lst[i]["url"] in url):
+#-----------------------------------------------------------------------------
+def printAllTab(lst):
+  if(len(lst) == 0):
+    print("No tabs open ")
+  else: 
+    parent_list = []
+    i = 0 
+    while(i < len(lst)):#here we extract all the parents from the list of tabs
+        if(lst[i]["parent_tab"] == 0.5):
+          parent_list.append(lst[i])
+        i += 1
+    i = 0
+    while(i < len(parent_list)): 
+      printParentAndchild(parent_list[i])
+      i += 1
+def printParentAndchild(dict):# here we print the parent and  its children
+  if(dict["child_tab"] == []):
+    print(dict["Title"], dict["url"])
+  else:
+    print(dict["Title"], dict["url"])
+    for i in range(len(dict["child_tab"])):
+      printParentAndchild(dict["child_tab"][i])
         dict["parent_tab"] = i
         lst[i]["child_tab"].append(dict)
   lst.append(dict)
