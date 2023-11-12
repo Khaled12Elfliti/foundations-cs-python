@@ -171,3 +171,8 @@ def import_tabs(lst):
   with open('tabs.json', 'r', encoding='utf-8') as f:
     lst.append(f.read())
   return lst
+#------------------------------------------------------------------------------------
+def menu():
+  print("\tAdvanced Browser Tabs Simulation")
+  print("choose one of the following options: ")
+  print('''1. Open a new tab\n2. Close  tab\n3. Switch tab\n4. Display all tab\n5. Open Nested Tab\n6. Clear All Tabs\n7. Save Tabs\n8. Import Tabs\n9. Exit\n''') 
