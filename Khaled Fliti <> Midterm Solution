@@ -176,3 +176,29 @@ def menu():
   print("\tAdvanced Browser Tabs Simulation")
   print("choose one of the following options: ")
   print('''1. Open a new tab\n2. Close  tab\n3. Switch tab\n4. Display all tab\n5. Open Nested Tab\n6. Clear All Tabs\n7. Save Tabs\n8. Import Tabs\n9. Exit\n''') 
+#---------------------------------------------------------------------------------
+menu()
+x = (input("Enter your choice: "))
+while(x):
+  if(x == "1"):
+    lst = openNewTab(lst)
+  elif(x == "2"):
+    lst = closeTab(lst)
+  elif(x == "3"):
+    lst = switchTab(lst)
+  elif(x == "4"):
+    printAllTab(lst)
+  elif(x == "5"):
+    lst = openNestedTab(lst)
+  elif(x == "6"):
+    clearAllTabs(lst)
+  elif(x == "7"):
+    saveTabs(lst)
+  elif(x == "8"):
+    lst = import_tabs(lst)
+  elif(x == "9"):
+    exit()
+  else :
+    print("Invalid choice , please try again : ")
+  menu()
+  x = (input("Enter your choice: "))
