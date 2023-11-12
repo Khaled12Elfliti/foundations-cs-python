@@ -1,5 +1,8 @@
 import urllib.request
+from urllib.request import urlopen
 import validators
+import os
+import json
 def openTab(lst):
   dict = {"Title": "", "url": "", "parent_tab": 0.5, "child_tab": []}
   dict["Title"] = input("Enter title: ")
